@@ -1,0 +1,88 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+body {
+  color: #5a5a5a;
+}
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+
+/* Special class on .container surrounding .navbar, used for positioning it into place. */
+.navbar-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+}
+
+/* Flip around the padding for proper display in narrow viewports */
+.navbar-wrapper .container {
+  padding-left: 0;
+  padding-right: 0;
+}
+.navbar-wrapper .navbar {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+#map
+{
+	
+	width:100%;
+	height: 570px;
+}
+
+
+/* Custom CSS =========================================== */
+.navbar-inverse {background-color: #efefef; border-color: #FF5200;}
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus,
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:hover, .navbar-inverse .navbar-nav>.active>a:focus {color: #fff; background-color: #c83a3a;}
+.navbar-inverse .navbar-toggle:hover, .navbar-inverse .navbar-toggle:focus {background-color: #e4dcd2;}
+.navbar-inverse .navbar-toggle {border-color: #c83a3a;}
+.navbar-inverse .navbar-nav > li > a{color:#000}
+.navbar-inverse .navbar-nav > li > a:hover, .navbar-inverse .navbar-nav > li > a:focus{color:#C83A3A}
+a{color:#fff}
+a:hover{color:#eee}
+.dsc {background-color: #757575;color: #fff;display: inline-block;padding: 4px 18px; width: auto;-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=80)';opacity: 0.8;}
+.highlightSection{padding:28px 0}
+.highlightSection img{padding:0 0 28px 0}
+.highlightSection .media{background-color: #efefef;border: 1px solid #efefef;color: #939393;padding: 10px;text-align: center;}
+.introSection{background-color: #efefef; padding:28px 0}
+color: #c83a3a ;border-color: #c83a3a ;}
+.text-primary-theme {color: #7db641;}
+.text-danger-theme {color: #FF007A;}
+.carousel-control.right, .carousel-control.left,
+footer{padding:18px 0; background:#111; color:#fff;}
+.pageTitle{padding:18px 0; border-top:1px solid #efefef; margin-top:92px; background:#efefef}
+.pageTitle h2{padding:0; margin:0}
+.bodyInner{padding:28px 0}
+.mainTitle {padding: 4px 0;border-top: 1px solid #FF8500;background: #FAFAFA;color: #0C0C0C;text-align: center;box-shadow: 0 0 24px #D5D5D5;}
+.cntr{text-align:center}
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 768px) {
+
+  /* Navbar positioning foo */
+  .navbar-wrapper {
+    margin-top: 20px;
+  }
+  .navbar-wrapper .container {
+    padding-left:  15px;
+    padding-right: 15px;
+  }
+  .navbar-wrapper .navbar {
+    padding-left:  0;
+    padding-right: 0;
+  }
+
+  /* The navbar becomes detached from the top, so we round the corners */
+  .navbar-wrapper .navbar {
+    border-radius: 4px;
+  }
+}
+
