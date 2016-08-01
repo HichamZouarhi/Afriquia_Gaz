@@ -193,7 +193,7 @@ var singleClickListener=function(evt) {
 						+"<td><input id='Population' class='form-field' type='text' value="+props.population+" /></td>"
 					+"</tr>"
 					+"<tr>"
-						+"<td><div class='form-title'>Superficie</div></td>"
+						+"<td><div class='form-title'>Superficie m²</div></td>"
 						+"<td><input id='Superficie' class='form-field' type='text' value="+props.superficie+" /></td>"
 					+"</tr>"
 				+"</table>"
@@ -318,6 +318,7 @@ draw.on('drawend', function(event) {
 		contentType: 'text/xml',
 		success: function(data) {
 			console.log("feature successfully added");
+			location.reload();
 		},
 		error: function(e) {
 			var errorMsg = e? (e.status + ' ' + e.statusText) : "";
@@ -497,7 +498,7 @@ $('#open-search').click( function(evt){
 								+"<td><input id='Population' class='form-field' type='text' value="+props.population+" /></td>"
 							+"</tr>"
 							+"<tr>"
-								+"<td><div class='form-title'>Superficie</div></td>"
+								+"<td><div class='form-title'>Superficie m²</div></td>"
 								+"<td><input id='Superficie' class='form-field' type='text' value="+props.superficie+" /></td>"
 							+"</tr>"
 						+"</table>"
