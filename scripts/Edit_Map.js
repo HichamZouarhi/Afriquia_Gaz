@@ -28,34 +28,61 @@ var map = new ol.Map({
 var sphere = new ol.Sphere(6378137);//the geodesic sphere to compute area of polygons
 
 //the microzones layer as a geojson layer
-var Microzones_Source=new ol.source.Vector({
+var microzonesSource=new ol.source.Vector({
 	format: new ol.format.GeoJSON(),
 	url: function(extent) {
 		return 'http://localhost:8080/geoserver/wfs?service=WFS&version=2.0.0&request=GetFeature&typename=afriquia_gaz:microzones&outputFormat=application/json';
-		},
-		strategy: ol.loadingstrategy.tile(ol.tilegrid.createXYZ({
-			maxZoom: 19
-			}))
-	  	});
+	},
+	strategy: ol.loadingstrategy.tile(ol.tilegrid.createXYZ({
+		maxZoom: 19
+	}))
+});
 var microzonesLayer=new ol.layer.Vector({
-	 			title: 'Microzones',
-	  			source: Microzones_Source,
-			style: new ol.style.Style({
-						fill: new ol.style.Fill({
-							color: 'rgba(255, 255, 255, 0.2)'
-							}),
-						stroke: new ol.style.Stroke({
-							color: '#737373',
-							width: 2
-							}),
-						image: new ol.style.Circle({
-							radius: 7,
-							fill: new ol.style.Fill({
-								color: '#ffcc33'
-								})
-							})
-					})
+	title: 'Microzones',
+	source: microzonesSource,
+	style: new ol.style.Style({
+		fill: new ol.style.Fill({
+			color: 'rgba(255, 255, 255, 0.2)'
+		}),
+		stroke: new ol.style.Stroke({
+			color: '#737373',
+			width: 2
+		}),
+		image: new ol.style.Circle({
+			radius: 7,
+			fill: new ol.style.Fill({
+				color: '#ffcc33'
+			})
+		})
+	})
+});
+
+var table=$('#dataTable_microzones').DataTable({
+	responsive: true,
+	"columnDefs": [
+		{
+			"targets": [ 0 ],
+			"visible": false
+		}
+	]
+});
+
+microzonesSource.on('change', function(evt){
+	var source=evt.target;
+		if(source.getState() === 'ready'){
+			console.log("source ready");
+			source.forEachFeature(function(feature){
+				table.row.add([
+					feature.get('id'),
+					feature.get('microzone'),
+					feature.get('arrondissement'),
+					feature.get('prefecture'),
+					feature.get('population'),
+					feature.get('superficie')
+					]).draw(false);
 			});
+		}
+});
 
 var prefecturesSource=new ol.source.Vector({
 	projection : 'EPSG:4326',
@@ -467,7 +494,7 @@ $('#open-search').click( function(evt){
 	if(microzonesLayer.getVisible()==true){
 		if(isFinite($('#ID-search').val().trim())){
 			console.log("a number");
-			Microzones_Source.forEachFeature(function(feature) {
+			microzonesSource.forEachFeature(function(feature) {
 				if(feature.get('id')==$('#ID-search').val()){
 					select.getFeatures().clear();
 					select.getFeatures().push(feature);
@@ -518,7 +545,7 @@ $('#open-search').click( function(evt){
 			});
 		}
 		else{
-			Microzones_Source.forEachFeature(function(feature) {
+			microzonesSource.forEachFeature(function(feature) {
 				if(feature.get('microzone')==$('#ID-search').val()){
 					select.getFeatures().clear();
 					select.getFeatures().push(feature);
